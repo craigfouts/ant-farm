@@ -1,3 +1,3 @@
 # ant-farm
 Project Ant Farm
-<video src="notebooks/_autoplay.mp4" />
+/Users/cfouts/Documents/Projects/ant-farm/notebooks/_autoplay.mp4
