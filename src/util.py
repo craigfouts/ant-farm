@@ -2,6 +2,7 @@ import imageio
 import matplotlib.pyplot as plt
 import numpy as np
 from IPython.display import display, Video
+from threading import Timer
 
 def plot(x, size=10, color='white', edgecolors='none', opacity=1., winsize=100, facecolor='black'):
     plt.tight_layout()
@@ -21,6 +22,31 @@ def grab_plot(close=True):
     if close:
         plt.close()
     return img
+
+class RunTime:
+    def __init__(self, function, interval=.02, *args, **kwargs):
+        self.function = function
+        self.interval = interval
+        self.args = args
+        self.kwargs = kwargs
+
+        self.timer = None
+        self.running = False
+
+    def _step(self):
+        self.running = False
+        self.start()
+        self.function(*self.args, **self.kwargs)
+
+    def start(self):
+        if not self.running:
+            self.timer = Timer(self.interval, self._step)
+            self.timer.start()
+            self.running = True
+
+    def stop(self):
+        self.timer.cancel()
+        self.running = False
 
 class VideoWriter:
     def __init__(self, filename='_autoplay.mp4', size=400, frame_rate=30.):
