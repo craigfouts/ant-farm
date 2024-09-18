@@ -1,8 +1,18 @@
 import imageio
 import matplotlib.pyplot as plt
 import numpy as np
+from functools import partial
+from ipycanvas import hold_canvas
 from IPython.display import display, Video
 from threading import Timer
+
+def draw(x, canvas, canvas_size=500, farm_color='#1b1f22', ant_color='red', ant_size=3.):
+    with hold_canvas():
+        canvas.clear()
+        canvas.fill_style = farm_color
+        canvas.fill_rect(0, 0, width=canvas_size, height=canvas_size)
+        canvas.fill_style = ant_color
+        canvas.fill_circles(*x.T, ant_size)
 
 def plot(x, size=10, color='white', edgecolors='none', opacity=1., winsize=100, facecolor='black'):
     plt.tight_layout()
