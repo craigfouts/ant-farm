@@ -6,7 +6,7 @@ from ipycanvas import hold_canvas
 from IPython.display import display, Video
 from threading import Timer
 
-def draw(x, canvas, canvas_size=500, farm_color='#1b1f22', ant_color='red', ant_size=3.):
+def draw(x, canvas, canvas_size=500, farm_color='black', ant_color='red', ant_size=3.):
     with hold_canvas():
         canvas.clear()
         canvas.fill_style = farm_color
@@ -14,13 +14,14 @@ def draw(x, canvas, canvas_size=500, farm_color='#1b1f22', ant_color='red', ant_
         canvas.fill_style = ant_color
         canvas.fill_circles(*x.T, ant_size)
 
-def plot(x, size=10, color='white', edgecolors='none', opacity=1., winsize=100, facecolor='black'):
+def plot(x, canvas_size=500, farm_color='black', ant_color='red', ant_opacity=1., ant_size=30.):
     plt.tight_layout()
-    fig, ax = plt.subplots(1, 1, facecolor=facecolor, constrained_layout=True)
-    ax.scatter(*x.T, s=size, c=color, edgecolors=edgecolors, alpha=opacity)
-    ax.axis([0, winsize, 0, winsize])
+    fig, ax = plt.subplots(1, 1, facecolor=farm_color, constrained_layout=True)
+    ax.scatter(*x.T, c=ant_color, alpha=ant_opacity, s=ant_size)
+    ax.axis([0, canvas_size, 0, canvas_size])
     ax.invert_yaxis()
     ax.set_axis_off()
+
     return fig
 
 def grab_plot(close=True):
@@ -29,8 +30,10 @@ def grab_plot(close=True):
     img = np.array(fig.canvas.renderer._renderer)
     a = np.float32(img[..., 3:]/255.)
     img = np.uint8(255.*(1. - a) + img[..., :3]*a)
+
     if close:
         plt.close()
+
     return img
 
 class RunTime:
@@ -81,6 +84,7 @@ class VideoWriter:
     def save(self):
         with imageio.imopen(self.filename, 'w', plugin='pyav') as out:
             out.init_video_stream('vp9', fps=self.frame_rate)
+
             for frame in self.frames:
                 out.write_frame(frame)
     
