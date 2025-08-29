@@ -1,4 +1,4 @@
-Ant Farm - Experiments with Self-Organizing Systems
+Terrarium - Experiments with Self-Organizing Systems
 ===================================================
 A compilation of my experiments with self-organizing systems and emergent behavior. Current methods include a Brownian motion algorithm, a Vicsek active matter model, and a branching annihilating random walk. Also a test bed for RunTime, a framework for building real-time interactive environments within Jupyter notebooks.
 
