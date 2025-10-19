@@ -12,19 +12,17 @@ from sklearn.utils import check_random_state
 from ..utils import attrmethod
 
 class Farm(metaclass=ABCMeta):
-    timer = None
-    running = False
-
     @attrmethod
     def __init__(self, farm_size=500.):
         self._canvas = Canvas(width=farm_size, height=farm_size)
         self._canvas.on_mouse_down(self._toggle)
+        self._running = False
 
     def _toggle(self, *_):
-        if Farm.running:
-            Farm.stop()
+        if self._running:
+            self.stop()
         else:
-            Farm.running = True
+            self._running = True
             self._step()
 
     @abstractmethod
@@ -36,18 +34,17 @@ class Farm(metaclass=ABCMeta):
         pass
 
     def start(self):
-        if Farm.running:
-            Farm.stop()
+        if self._running:
+            self.stop()
 
         display(self._canvas)
         self._draw()
 
-    @classmethod
-    def stop(cls):
-        if cls.timer is not None:
-            cls.timer.cancel()
+    def stop(self):
+        if hasattr(self, '_timer'):
+            self._timer.cancel()
 
-        cls.running = False
+        self._running = False
 
 class Colony(metaclass=ABCMeta):
     @attrmethod

@@ -23,8 +23,8 @@ class AntFarm(Farm):
             self._canvas.fill_style = self.ant_color
             self._canvas.fill_circles(*self.colony.X_.T, self.ant_size)
 
-    def _step(self):  # TODO: add colony _step parameters
+    def _step(self, *args, **kwargs):  # TODO: add colony _step parameters
         self.colony()
         self._draw()
-        Farm.timer = Timer(self.step_rate, self._step)
-        Farm.timer.start()
+        self._timer = Timer(self.step_rate, self._step)
+        self._timer.start()
