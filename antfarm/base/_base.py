@@ -11,7 +11,7 @@ from IPython.display import display
 from sklearn.utils import check_random_state
 from ..utils import attrmethod
 
-class Farm(metaclass=ABCMeta):
+class RunTime(metaclass=ABCMeta):
     @attrmethod
     def __init__(self, farm_size=500.):
         self._canvas = Canvas(width=farm_size, height=farm_size)

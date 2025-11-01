@@ -8,9 +8,9 @@ from ipycanvas import hold_canvas, Canvas
 from IPython.display import display
 from threading import Timer
 from ..utils import attrmethod
-from ..base import Farm
+from ..base import RunTime
 
-class AntFarm(Farm):
+class AntFarm(RunTime):
     @attrmethod
     def __init__(self, colony, *, step_rate=.02, farm_color='black', ant_color='white', ant_size=3.):
         super().__init__(colony.farm_size)

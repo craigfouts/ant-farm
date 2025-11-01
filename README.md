@@ -1,6 +1,6 @@
 Ant Farm - Experiments with Self-Organizing Systems
 ===================================================
-A compilation of my experiments with self-organizing systems and emergent behavior. Current methods include a Brownian motion algorithm, a Vicsek active matter model, and a branching-and-annihilating random walk. Also a test bed for RunTime, a framework for building real-time interactive environments in Jupyter notebooks. 
+A compilation of my experiments with self-organizing systems and emergent behavior. Current methods include a Brownian motion algorithm, a Vicsek active matter model, and a branching-and-annihilating random walk. Also a test bed for RunTime, a framework for building real-time interactive environments in Jupyter notebooks.
 
 ## Brownian Motion
 https://github.com/user-attachments/assets/ff4ff5ca-141a-498d-acd7-b1abcd3f9bbe

@@ -4,8 +4,7 @@ Correspondence: c.fouts25@imperial.ac.uk
 License: Apache 2.0 license
 '''
 
-from ._brownian import Brownian
-from ._vicksek import Vicsek
+from ._walks import Brownian, Vicsek
 
 __all__ = [
     'Brownian',
