@@ -4,7 +4,7 @@ Correspondence: c.fouts25@imperial.ac.uk
 License: Apache 2.0 license
 '''
 
-from ._sim import AntFarm
+from .core import AntFarm
 
 __all__ = [
     'AntFarm'

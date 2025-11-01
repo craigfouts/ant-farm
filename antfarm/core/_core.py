@@ -7,8 +7,8 @@ License: Apache 2.0 license
 from ipycanvas import hold_canvas, Canvas
 from IPython.display import display
 from threading import Timer
-from .._utils import attrmethod
-from ...base import Farm
+from ..utils import attrmethod
+from ..base import Farm
 
 class AntFarm(Farm):
     @attrmethod
