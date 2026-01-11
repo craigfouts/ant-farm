@@ -50,7 +50,7 @@ class Colony(metaclass=ABCMeta):
     @attrmethod
     def __init__(self, n_ants=500, *, farm_size=500, wrap=True, seed=None):
         self._seed = check_random_state(seed)
-        self.X_ = self._seed.random((n_ants, 2))*farm_size
+        self.X_ = self._seed.random((n_ants, 2))*(farm_size - 6) + 3
         self.V_ = 2*np.pi*self._seed.random((n_ants, 1))
 
     def __call__(self, *args, **kwargs):
