@@ -4,8 +4,10 @@ Correspondence: c.fouts25@imperial.ac.uk
 License: Apache 2.0 license
 '''
 
-from ._core import AntFarm
+from ._core import AntFarm, Colony, RunTime
 
 __all__ = [
-    'AntFarm'
+    'AntFarm',
+    'Farm',
+    'RunTime'
 ]

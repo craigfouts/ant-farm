@@ -4,7 +4,7 @@ Correspondence: c.fouts25@imperial.ac.uk
 License: Apache 2.0 license
 '''
 
-from ._walks import Brownian, Vicsek
+from ._models import Brownian, Vicsek
 
 __all__ = [
     'Brownian',
