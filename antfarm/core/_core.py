@@ -74,10 +74,10 @@ class AntFarm(RunTime):
 
 class Colony(metaclass=ABCMeta):
     @attrmethod
-    def __init__(self, n_ants=500, *, farm_size=500, ant_size=4., step_rate=1., wrap=True, seed=None):
+    def __init__(self, n_ants=500, *, farm_size=500, ant_size=4., step_rate=2., wrap=True, seed=None):
         self._seed = check_random_state(seed)
         self.X_ = self._seed.random((n_ants, 2))*(farm_size - 2*ant_size) + ant_size
-        self.V_ = 2*np.pi*self._seed.random((n_ants, 1))
+        self.V_, self.A_ = np.zeros((2, *self.X_.shape))
 
     def __call__(self, *args, **kwargs):
         return self._step(*args, **kwargs)
