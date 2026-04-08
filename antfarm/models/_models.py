@@ -9,6 +9,12 @@ from scipy.spatial.distance import cdist
 from ..core import Colony
 from ..utils.sugar import attrmethod
 
+__all__ = [
+    'Brownian',
+    'Gravity',
+    'Vicsek'
+]
+
 class Brownian(Colony):
     @attrmethod
     def __init__(self, *args, drift_scale=.5, **kwargs):
@@ -53,7 +59,7 @@ class Gravity(Colony):
         self.V_ = self._seed.normal(0., drift_scale, self.X_.shape)
         self.A_[:, 1] = gravity
 
-    def _check_borders(self, axes=(0, 1)):
+    def _check_borders(self, axes=(0, 1)):  # TODO: dot
         for ax in axes:
             lower_mask = (x := self.X_[:, ax]) < self.ant_size
             upper_mask = x > self.farm_size - self.ant_size
@@ -63,7 +69,17 @@ class Gravity(Colony):
             self.X_[lower_mask, ax] = self.ant_size
             self.X_[upper_mask, ax] = self.farm_size - self.ant_size
 
+    def _check_collisions(self):
+        idx = np.argsort(adj := cdist(self.X_, self.X_), -1)[:, 1:2]
+        adj = np.take_along_axis(adj, idx, -1)
+        v = self.V_[idx.flatten()]*(mask := adj <= (d := 2*self.ant_size))
+        self.V_ = self.V_*np.logical_not(mask) + v
+        # self.X_ += self.V_*self.step_rate*(diff := d - adj)*(diff > 0)
+        # update = (diff := d - adj)*(diff > 0)
+        # self.X_ += np.concat((np.cos(update), np.sin(update)), -1)
+
     def _step(self):
         self.V_ += self.A_*self.step_rate
         self.X_ += self.V_*self.step_rate + .5*self.A_*self.step_rate**2
         self._check_borders()
+        self._check_collisions()

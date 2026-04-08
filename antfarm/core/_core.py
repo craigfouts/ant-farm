@@ -12,6 +12,12 @@ from sklearn.utils import check_random_state
 from threading import Timer
 from ..utils.sugar import attrmethod
 
+__all__ = [
+    'AntFarm',
+    'Colony',
+    'RunTime'
+]
+
 class RunTime(metaclass=ABCMeta):
     @attrmethod
     def __init__(self, frame_size=500., frame_rate=.02):
