@@ -1,13 +1,11 @@
 '''
-Author(s): Craig Fouts
+Author(s): Craig fouts
 Correspondence: c.fouts25@imperial.ac.uk
 License: Apache 2.0 license
 '''
 
-from ._models import Brownian, Gravity, Vicsek
+from ._biology import *
 
 __all__ = [
-    'Brownian',
-    'Gravity',
     'Vicsek'
 ]

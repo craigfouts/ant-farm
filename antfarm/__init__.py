@@ -4,10 +4,9 @@ Correspondence: c.fouts25@imperial.ac.uk
 License: Apache 2.0 license
 '''
 
-from .core import AntFarm, Colony, RunTime
+from .core import *
 
 __all__ = [
-    'AntFarm',
-    'Colony',
-    'RunTime'
+    'Brownian',
+    'Vicsek'
 ]
