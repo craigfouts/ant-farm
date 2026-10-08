@@ -21,8 +21,8 @@ class NBody(AntFarm):
         dx = (x := self.x + self.step_rate*self.v) - x[:, None]
         r = (r2 := np.square(dx).sum(-1)**(3./2.) + self._eye)**(1./3.)
         a, mask = self.m@(dx/r2[..., None]), (r <= 2.*self.ant_size) - self._eye
-        a += self.m[:, None]*(mask[..., None]*dx/r[..., None]**2).sum(0)
-        self.v += self.step_rate*a
+        a += self.m[:, None]*(mask[..., None]*dx/r[..., None]**2.).sum(0)
+        self.v += self.step_rate*a/2.
         self.x += self.step_rate*self.v
 
 class Gravity(AntFarm):
@@ -46,7 +46,7 @@ class Gravity(AntFarm):
     def _step(self):
         dx = (x := self.x + self.step_rate*self.v) - x[:, None]
         r = (np.square(dx).sum(-1)**(3./2.) + self._eye)**(1./3.)
-        mask = ((r <= 2*self.ant_size) - self._eye)
+        mask = (r <= 2*self.ant_size) - self._eye
         a = self.a + self.m[:, None]*(mask[..., None]*dx/r[..., None]).sum(0)
         self.v += self.step_rate*a/2.
         self.x += self.step_rate*self.v
