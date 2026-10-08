@@ -10,5 +10,6 @@ from .physics import *
 __all__ = [
     'Brownian',
     'Gravity',
+    'NBody',
     'Vicsek'
 ]

@@ -23,11 +23,12 @@ class RunTime(metaclass=ABCMeta):
 
     @buildmethod
     def __step(self, *args, **kwargs):
-        step_kwargs, draw_kwargs = get_kwargs(self._step, self._draw, *args, **kwargs)
-        self._step(**step_kwargs)
-        self._draw(**draw_kwargs)
-        self._timer = Timer(self.frame_rate, self.__step, args=args, kwargs=kwargs)
-        self._timer.start()
+        if self._running:
+            step_kwargs, draw_kwargs = get_kwargs(self._step, self._draw, *args, **kwargs)
+            self._step(**step_kwargs)
+            self._draw(**draw_kwargs)
+            self._timer = Timer(self.frame_rate, self.__step, args=args, kwargs=kwargs)
+            self._timer.start()
 
     @abstractmethod
     def _step(self):

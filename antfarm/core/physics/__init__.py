@@ -9,5 +9,6 @@ from ._motion import *
 
 __all__ = [
     'Brownian',
-    'Gravity'
+    'Gravity',
+    'NBody'
 ]

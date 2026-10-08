@@ -8,6 +8,23 @@ import numpy as np
 from ...base import AntFarm
 from ...utils.sugar import attrmethod
 
+class NBody(AntFarm):
+    @attrmethod
+    def __init__(self, n_ants=50, ant_size=16., ant_mass=1e3, step_rate=.1, **kwargs):
+        super().__init__(n_ants, ant_size, step_rate=step_rate, **kwargs)
+
+        self.v = np.zeros((n_ants, 2))
+        self.m = ant_mass*np.ones(n_ants)
+        self._eye = np.eye(n_ants)
+
+    def _step(self):
+        dx = (x := self.x + self.step_rate*self.v) - x[:, None]
+        r = (r2 := np.square(dx).sum(-1)**(3./2.) + self._eye)**(1./3.)
+        a, mask = self.m@(dx/r2[..., None]), (r <= 2.*self.ant_size) - self._eye
+        a += self.m[:, None]*(mask[..., None]*dx/r[..., None]**2).sum(0)
+        self.v += self.step_rate*a
+        self.x += self.step_rate*self.v
+
 class Gravity(AntFarm):
     @attrmethod
     def __init__(self, n_ants=100, drift=.5, gravity=.1, friction=.1, **kwargs):
