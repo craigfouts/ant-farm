@@ -27,12 +27,14 @@ class NBody(AntFarm):
 
 class Gravity(AntFarm):
     @attrmethod
-    def __init__(self, n_ants=100, drift=.5, gravity=.1, friction=.1, **kwargs):
-        super().__init__(n_ants, **kwargs)
+    def __init__(self, n_ants=50, ant_size=16., ant_mass=1e2, gravity=10., friction=.1, step_rate=.1, **kwargs):
+        super().__init__(n_ants, ant_size, step_rate=step_rate, **kwargs)
 
-        self.v = self._state.uniform(size=(n_ants, 2))
+        self.v = np.zeros((n_ants, 2))
         self.a = np.zeros((n_ants, 2))
         self.a[:, 1] = gravity
+        self.m = ant_mass*np.ones(n_ants)
+        self._eye = np.eye(n_ants, dtype=np.int32)
 
     def _check_walls(self):
         for ax in (0, 1):
@@ -41,11 +43,11 @@ class Gravity(AntFarm):
             self.v[lower | upper, ax] *= -1.*(1. - self.friction)
             self.x[lower, ax], self.x[upper, ax] = self.ant_size, wall
 
-    def _check_edges(self):
-        pass
-
     def _step(self):
-        self.v += self.step_rate*self.a
-        self.x += self.step_rate*self.v + (self.step_rate**2)*self.a/2
+        dx = (x := self.x + self.step_rate*self.v) - x[:, None]
+        r = (np.square(dx).sum(-1)**(3./2.) + self._eye)**(1./3.)
+        mask = ((r <= 2*self.ant_size) - self._eye)
+        a = self.a + self.m[:, None]*(mask[..., None]*dx/r[..., None]).sum(0)
+        self.v += self.step_rate*a/2.
+        self.x += self.step_rate*self.v
         self._check_walls()
-        self._check_edges()
