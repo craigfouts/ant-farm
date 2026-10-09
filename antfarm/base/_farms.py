@@ -6,17 +6,15 @@ License: Apache 2.0 license
 
 from abc import ABCMeta, abstractmethod
 from ipycanvas import hold_canvas
-from sklearn.utils import check_random_state
 from ._base import RunTime
 from ..utils.data import make_grid
 from ..utils.sugar import attrmethod
 
 class AntFarm(RunTime, metaclass=ABCMeta):
     @attrmethod
-    def __init__(self, n_ants=500, ant_size=4., ant_color='white', inset=.1, scale=0., wrap=True, seed=None, **kwargs):
+    def __init__(self, n_ants=500, ant_size=4., ant_color='white', inset=.1, scale=0., wrap=True, **kwargs):
         super().__init__(**kwargs)
 
-        self._state = check_random_state(seed)
         self.x = make_grid(n_ants, *self._canvas.shape, inset, scale, self._state)
 
     def _build(self):        
