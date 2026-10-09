@@ -27,7 +27,7 @@ class NBody(AntFarm):
 
 class Gravity(AntFarm):
     @attrmethod
-    def __init__(self, n_ants=50, ant_size=16., ant_mass=1e2, gravity=10., friction=.1, step_rate=.1, **kwargs):
+    def __init__(self, n_ants=50, ant_size=16., ant_mass=1e2, gravity=2., friction=.1, step_rate=.1, **kwargs):
         super().__init__(n_ants, ant_size, step_rate=step_rate, **kwargs)
 
         self.v = np.zeros((n_ants, 2))

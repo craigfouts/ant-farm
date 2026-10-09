@@ -12,7 +12,7 @@ from ..utils.sugar import attrmethod
 
 class AntFarm(RunTime, metaclass=ABCMeta):
     @attrmethod
-    def __init__(self, n_ants=500, ant_size=4., ant_color='white', inset=.1, scale=0., wrap=True, **kwargs):
+    def __init__(self, n_ants=500, ant_size=4., ant_color='white', inset=.1, scale=6., wrap=True, **kwargs):
         super().__init__(**kwargs)
 
         self.x = make_grid(n_ants, *self._canvas.shape, inset, scale, self._state)
