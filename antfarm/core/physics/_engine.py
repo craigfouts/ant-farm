@@ -10,7 +10,7 @@ from ...utils.sugar import attrmethod
 
 class NBody(AntFarm):
     @attrmethod
-    def __init__(self, n_ants=50, ant_size=16., ant_mass=1e3, step_rate=.1, **kwargs):
+    def __init__(self, n_ants=100, ant_size=8., ant_mass=1e3, step_rate=.1, **kwargs):
         super().__init__(n_ants, ant_size, step_rate=step_rate, **kwargs)
 
         self.v = np.zeros((n_ants, 2))
@@ -39,7 +39,7 @@ class Gravity(AntFarm):
     def _check_walls(self):
         for ax in (0, 1):
             lower = (x := self.x[:, ax]) < self.ant_size
-            upper = x > (wall := self.shape[ax] - self.ant_size)
+            upper = x > (wall := self._canvas.shape[ax] - self.ant_size)
             self.v[lower | upper, ax] *= -1.*(1. - self.friction)
             self.x[lower, ax], self.x[upper, ax] = self.ant_size, wall
 

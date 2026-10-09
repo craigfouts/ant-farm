@@ -5,20 +5,16 @@ License: Apache 2.0 license
 '''
 
 from abc import ABCMeta, abstractmethod
-from ipycanvas import MultiCanvas
-from ipywidgets import Button, FloatSlider
-from IPython.display import HTML, display
 from threading import Timer
+from ._canvas import Canvas
 from ..utils import get_kwargs
 from ..utils.sugar import attrmethod, buildmethod
 
 class RunTime(metaclass=ABCMeta):
     @attrmethod
-    def __init__(self, width=500., height=500., frame_rate=2e-2, step_rate=2.):
-        self.shape = (width, height)
-        self._canvas = MultiCanvas(2, width=width, height=height)
-        self._toggle = Button(description='Start', width=width)
-        self._toggle.on_click(self.toggle)
+    def __init__(self, frame_rate=2e-2, step_rate=2., **kwargs):
+        self._canvas = Canvas(**kwargs)
+        self._canvas.toggle.on_click(self.toggle)
         self._running = False
 
     @buildmethod
@@ -42,9 +38,7 @@ class RunTime(metaclass=ABCMeta):
         if self._running:
             self.stop()
 
-        # display(HTML('<style> .cell-output-ipywidget-background { background-color: transparent !important;} </style>'))
-        display(self._canvas)
-        display(self._toggle)
+        self._canvas.show()
         self._draw()
 
     def stop(self):
@@ -55,9 +49,12 @@ class RunTime(metaclass=ABCMeta):
 
     def toggle(self, *_):
         if self._running:
-            self._toggle.description = 'Start'
+            self._canvas.toggle.icon = 'play'
             self.stop()
         else:
-            self._toggle.description = 'Stop'
+            self._canvas.toggle.icon = 'pause'
             self._running = True
             self.__step()
+
+    def reset(self, *_):
+        pass
