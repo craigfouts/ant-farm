@@ -32,7 +32,7 @@ class Gravity(AntFarm):
 
         self.v = np.zeros((n_ants, 2))
         self.a = np.zeros((n_ants, 2))
-        self.a[:, 1] = gravity
+        self.a = gravity*np.tile(np.arange(2), (n_ants, 1))
         self.m = ant_mass*np.ones(n_ants)
         self._eye = np.eye(n_ants, dtype=np.int32)
 

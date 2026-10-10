@@ -20,6 +20,11 @@ def get_methods(cls, prefix='', suffix='', return_callable=False):
 
     return methods
 
+def has_method(cls, method):
+    methods = get_methods(cls)
+
+    return method in methods
+
 def get_kwargs(*functions, **kwargs):
     function_kwargs = []
 

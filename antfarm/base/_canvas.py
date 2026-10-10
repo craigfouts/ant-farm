@@ -21,11 +21,11 @@ class Canvas(MultiCanvas):
         self.reset = Button(icon='rotate-left', layout=self.toggle.layout)
         self.io = HBox((self.toggle, self.reset), layout=Layout(justify_content='center'))
         self.body = VBox((self, self.io), layout=Layout(width=f'{width}px'))
-        set_background('transparent')
 
     def set_color(self, color='black'):
         self[0].fill_style = color
         self[0].fill_rect(0, 0, width=self.width, height=self.height)
 
-    def show(self):
+    def show(self, background='transparent'):
+        set_background(background)
         display(self.body)
