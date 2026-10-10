@@ -1,8 +1,8 @@
-'''
-Author(s): Craig Fouts
-Correspondence: c.fouts25@imperial.ac.uk
+"""
+Author(s): Craig fouts
+Correspondence: foutscw@gmail.com
 License: Apache 2.0 license
-'''
+"""
 
 from ._utils import *
 

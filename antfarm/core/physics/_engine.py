@@ -1,8 +1,8 @@
-'''
+"""
 Author(s): Craig fouts
-Correspondence: c.fouts25@imperial.ac.uk
+Correspondence: foutscw@gmail.com
 License: Apache 2.0 license
-'''
+"""
 
 import numpy as np
 from ...base import AntFarm

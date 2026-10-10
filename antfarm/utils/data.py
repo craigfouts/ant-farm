@@ -1,3 +1,9 @@
+"""
+Author(s): Craig fouts
+Correspondence: foutscw@gmail.com
+License: Apache 2.0 license
+"""
+
 import numpy as np
 from sklearn.utils import check_random_state
 
