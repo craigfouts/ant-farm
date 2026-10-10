@@ -34,6 +34,8 @@ from antfarm import NBody
 NBody().record(path='output/nbody.mp4', show=True)
 ```
 
-<video alt="video" src="https://github.com/user-attachments/assets/e0a48752-b198-49c9-89cf-b149bcfbb9d8" />
+<p align="center" width="100%">
+    <video src="https://github.com/user-attachments/assets/e0a48752-b198-49c9-89cf-b149bcfbb9d8" width="80%" controls></video>
+</p>
 
 Additional examples are provided in ```notebooks/demos.ipynb```
