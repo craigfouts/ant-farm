@@ -1,12 +1,37 @@
-Ant Farm - Experiments with Self-Organizing Systems
-===================================================
-Some experiments with self-organizing systems and emergent behavior. Current methods include a Brownian motion algorithm, a Vicsek active matter model, and a branching-annihilating random walk. Also a test bed for RunTime, a framework for building real-time interactive environments in Jupyter notebooks.
+# Ant Farm - Experiments with Self-Organizing Systems
 
-## Brownian Motion
-https://github.com/user-attachments/assets/ff4ff5ca-141a-498d-acd7-b1abcd3f9bbe
+[![Asterism](https://github.com/craigfouts/ant-farm/actions/workflows/antfarm.yml/badge.svg?event=push)](https://github.com/craigfouts/ant-farm/actions/workflows/antfarm.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-red.svg)](https://opensource.org/licenses/Apache-2.0) [![Python](https://img.shields.io/badge/Python-3.14.7-blue)](https://www.python.org/downloads/release/python-3147/)
 
-## Vicsek Active Matter
-https://github.com/user-attachments/assets/a8b8a225-c687-4eeb-9a30-61e8d9dfa368
+**Ant farm** is a collection of experiments with self-organizing systems and emergent behavior. Current methods include a Brownian motion algorithm, a Vicsek active matter model, and a branching-annihilating random walk. It also serves as a test bed for **RunTime**, a framework for building real-time interactive environments in Jupyter notebooks.
 
-## Branching-Annihilating Random Walk
-https://github.com/user-attachments/assets/82aa80b2-6deb-45ba-874b-0146f88f568a
+## Installation
+
+### MacOS
+
+```bash
+git clone https://github.com/craigfouts/ant-farm.git
+cd ant-farm
+python -m venv .env
+source .env/bin/activate
+pip install -r requirements.txt
+```
+
+### Windows
+
+```bash
+git clone https://github.com/craigfouts/ant-farm.git
+cd asterism
+python -m venv .env
+.env\Scripts\activate
+pip install -r requirements.txt
+```
+
+## Usage
+
+```python
+from antfarm import NBody
+
+NBody().record(path='output/nbody.mp4', show=True)
+```
+
+Additional examples are provided in ```notebooks/demos.ipynb```
