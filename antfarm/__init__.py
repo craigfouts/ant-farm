@@ -8,5 +8,7 @@ from .core import *
 
 __all__ = [
     'Brownian',
+    'Gravity',
+    'NBody',
     'Vicsek'
 ]

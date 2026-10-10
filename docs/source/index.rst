@@ -6,12 +6,26 @@
 Ant Farm documentation
 ======================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+``Ant farm`` is a collection of experiments with self-organizing systems and emergent behavior. Current methods include a Brownian motion algorithm, a Vicsek active matter model, and a branching-annihilating random walk. It also serves as a test bed for ``RunTime``, a framework for building real-time interactive environments in Jupyter notebooks.
+
+.. grid:: 2
+   :padding: 0
+
+   .. grid-item-card:: Installation
+      :link: install.html
+
+   .. grid-item-card:: Examples
+      :link: examples.html
+
+.. grid:: 2
+   :padding: 0
+
+   .. grid-item-card:: Reference
+      :link: reference.html
+
+   .. grid-item-card:: GitHub
+      :link: https://github.com/craigfouts/ant-farm/tree/main
