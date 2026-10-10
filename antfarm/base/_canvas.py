@@ -22,7 +22,10 @@ class Canvas(MultiCanvas):
         self.io = HBox((self.toggle, self.reset), layout=Layout(justify_content='center'))
         self.body = VBox((self, self.io), layout=Layout(width=f'{width}px'))
 
-    def set_color(self, color='black'):
+    def set_color(self, color=None):
+        if color is None:
+            color = self.color
+        
         self[0].fill_style = color
         self[0].fill_rect(0, 0, width=self.width, height=self.height)
 
