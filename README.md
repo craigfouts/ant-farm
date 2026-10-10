@@ -34,6 +34,6 @@ from antfarm import NBody
 NBody().record(path='output/nbody.mp4', show=True)
 ```
 
-<video controls src="notebooks/output/nbody.mp4" title="N-Body Simulation"></video>
+<img width="100%" alt="image" src="https://github.com/user-attachments/assets/e0a48752-b198-49c9-89cf-b149bcfbb9d8" />
 
 Additional examples are provided in ```notebooks/demos.ipynb```
