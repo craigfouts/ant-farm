@@ -21,4 +21,4 @@ class Vicsek(AntFarm):
         drift = self._state.normal(0., self.drift**2, self.v.shape)
         self.v = (edges@self.v)/edges.sum(1)[:, None] + drift
         update = np.concat((np.cos(self.v), np.sin(self.v)), 1)
-        self.x += self.step_rate*update
+        self.x += self.dt*update

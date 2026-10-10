@@ -16,7 +16,7 @@ from ..utils.sugar import attrmethod
 
 class AntFarm(RunTime, metaclass=ABCMeta):
     @attrmethod
-    def __init__(self, n_ants=500, ant_size=4., ant_color='white', inset=.1, scale=6., wrap=True, **kwargs):
+    def __init__(self, n_ants=500, size=4., style='white', inset=.1, scale=6., wrap=True, **kwargs):
         super().__init__(**kwargs)
 
         self.x = make_grid(n_ants, *self._canvas.shape, inset, scale, self._state)
@@ -30,11 +30,11 @@ class AntFarm(RunTime, metaclass=ABCMeta):
         pass
 
     def _draw(self):
-        self._canvas[1].fill_style = self.ant_color
+        self._canvas[1].fill_style = self.style
 
         with hold_canvas():
             self._canvas[1].clear()
-            self._canvas[1].fill_circles(*self.x.T, self.ant_size)
+            self._canvas[1].fill_circles(*self.x.T, self.size)
 
     def plot(self, return_plot=False):
         fig, ax = plt.subplots(1, 1, facecolor=self._canvas.color)
@@ -42,7 +42,7 @@ class AntFarm(RunTime, metaclass=ABCMeta):
         ax.axis([0, self._canvas.width, 0, self._canvas.height])
         ax.yaxis.set_inverted(True)
         ax.set_axis_off()
-        ax.scatter(*self.x.T, 2.*self.ant_size**2., self.ant_color)
+        ax.scatter(*self.x.T, 2.*self.size**2., self.style)
 
         if return_plot:
             return fig, ax

@@ -18,4 +18,4 @@ class Brownian(AntFarm):
     def _step(self):
         self.v += self._state.normal(0., self.drift**2, self.v.shape)
         update = np.concat((np.cos(self.v), np.sin(self.v)), 1)
-        self.x += self.step_rate*update
+        self.x += self.dt*update

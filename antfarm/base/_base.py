@@ -14,7 +14,7 @@ from ..utils.sugar import attrmethod, buildmethod
 
 class RunTime(metaclass=ABCMeta):
     @attrmethod
-    def __init__(self, frame_rate=2e-2, step_rate=2., seed=None, **kwargs):
+    def __init__(self, spf=2e-2, dt=2., seed=None, **kwargs):
         self._state = check_random_state(seed)
         self._canvas = Canvas(**kwargs)
         self._canvas.toggle.on_click(self.toggle)
@@ -27,7 +27,7 @@ class RunTime(metaclass=ABCMeta):
             step_kwargs, draw_kwargs = get_kwargs(self._step, self._draw, *args, **kwargs)
             self._step(**step_kwargs)
             self._draw(**draw_kwargs)
-            self._timer = Timer(self.frame_rate, self.__step, args=args, kwargs=kwargs)
+            self._timer = Timer(self.spf, self.__step, args=args, kwargs=kwargs)
             self._timer.start()
 
     @abstractmethod
