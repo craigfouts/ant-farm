@@ -1,11 +1,10 @@
 """
 Author(s): Craig fouts
-Correspondence: foutscw@gmail.com
 License: Apache 2.0 license
 """
 
 from functools import singledispatch, wraps
-from inspect import signature, getcallargs
+from inspect import signature
 from ._utils import get_kwargs, get_methods
 
 @singledispatch
