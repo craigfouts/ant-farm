@@ -7,8 +7,11 @@ Ant Farm documentation
 ======================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :hidden:
+
+   install
+   examples
+   reference
 
 ``Ant farm`` is a collection of experiments with self-organizing systems and emergent behavior. Current methods include a Brownian motion algorithm, a Vicsek active matter model, and a branching-annihilating random walk. It also serves as a test bed for ``RunTime``, a framework for building real-time interactive environments in Jupyter notebooks.
 
