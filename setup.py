@@ -1,6 +1,5 @@
 """
-Author(s): Craig fouts
-Correspondence: foutscw@gmail.com
+Authors: Craig fouts
 License: Apache 2.0 license
 """
 
