@@ -36,4 +36,4 @@ NBody().record(path='output/nbody.mp4', show=True)
 
 <video controls width=100% src="https://github.com/user-attachments/assets/3ac482ac-038f-4691-bb55-aede063d1168"></video>
 
-Additional examples are provided in ```notebooks/demos.ipynb```.
+Additional examples are provided in ```notebooks/demos.ipynb```. **RunTime** examples are provided in ```notebooks/runtime.ipynb```.
